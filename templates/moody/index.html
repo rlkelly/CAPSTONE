@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Albums{% endblock %}
+
+{% block body_block %}
+
+    <div class="page-header">
+    {% if user.is_authenticated %}
+    <h1>Moody says... Waddup {{ user.username }}!</h1>
+    {% else %}
+    <h1>Moody says Waddup Bro!</h1>
+    {% endif %}
+    </div>
+
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+
+    {% for row in idearow %}
+
+        <div class="row" >
+
+        {% for album,page in row %}
+            <div class="col-md-4 portfolio-item">
+                <a href="#">
+                    {% if album.img != 'NOTFOUND' %}
+                    <a href="{% url 'album'  album.slug %}">
+                    <img class="img-responsive" src={{album.img}} alt={{"https://i.scdn.co/image/9fd1d1fc621159e76379f253b4795a869632a332"}} style="width: 80%; height: 80%">
+                    <a/>
+                    {% else %}
+                    <img class="img" src={{"https://i.scdn.co/image/9fd1d1fc621159e76379f253b4795a869632a332"}} alt="" style="width: 100%; height: 100%; padding-right: 0px; ">
+                    {% endif %}
+
+                </a>
+                <h3>
+            <!--       <a href="{% url 'album'  album.slug %}">{{ album.name }}</a>  -->
+                </h3>
+            </div>
+        {% endfor %}
+
+        </div>
+    {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if albums.has_previous %}
+            <a href="?page={{ albums.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ albums.number }} of {{ albums.paginator.num_pages }}
+        </span>
+
+        {% if albums.has_next %}
+            <a href="?page={{ albums.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

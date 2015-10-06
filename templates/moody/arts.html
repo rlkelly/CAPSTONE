@@ -1,0 +1,31 @@
+{% if arts or desc or gen%}
+    <ul class="nav nav-sidebar">
+
+<!-- Single button -->
+{% for d in desc %}
+<li>
+<a href="{% url 'word'  d.dslug %}">{{ d.adj }}</a>
+</li>
+{% endfor %}
+
+    {% for a in arts %}
+
+        {% if a == act_art %} <li  class="active" > {% else  %} <li>{% endif %}
+
+            <a href="{% url 'artist'  a.slug %}">{{ a.name }}</a></li>
+
+    {% endfor %}
+
+    {% for g in gen %}
+    <li>
+    <a href="{% url 'genre'  g.gslug %}">{{ g.gname }}</a></li>
+    </li>
+    {% endfor %}
+
+{% endif %}
+    </ul>
+
+
+
+
+

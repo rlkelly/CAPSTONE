@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Search{% endblock %}
+
+{% block body_block %}
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>{{ album.name }}</h1>
+                {{album.id}}
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-6">
+            
+                <img class="img-responsive" src={{artist.img}} alt="" style="width: 70%; height: 70%">
+
+            </div>
+
+            <div class="col-md-6">
+                <h3>DESCRIPTIVE TERMS</h3>
+
+                {% for word in words %}
+                <a href="{% url 'word'  word.dslug %}">
+                <button type="submit" name="op" value="{% url 'word'  word.dslug %}" > {{ word.adj }}</button></a>
+
+                {% endfor %}
+            </div>
+
+    <div class="col-md-6">
+            <div class="col-md-3">                
+                <h3>Review Locations</h3>
+                
+                <ul>
+                {% for page in pages %}
+                    <li>
+                        <a href={{page.url}}>{{ page.title }}</a>
+                        {% if page.views > 1 %}
+                            ({{ page.views }} views)
+                        {% elif page.views == 1 %}
+                            ({{ page.views }} view)
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+
+                <h3>Genre Tags</h3>
+                
+                <ul>
+                {% for genre in genre_tags %}
+                    <li>
+                        <a href="{% url 'genre'  genre.gslug %}">{{ genre.gname }}</a>
+                    </li>
+                {% endfor %}
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-3" align = 'right'>
+                <br/>
+
+                <iframe src="https://embed.spotify.com/?uri={{spotify}}" width="400" height="400" frameborder="0" allowtransparency="true"></iframe>
+
+            </div>
+
+    </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <div class="row">
+
+            <div class="col-lg-12">
+            <br/>
+                <h3 class="page-header">Related Projects</h3>
+            </div>
+
+            {% for neigh in neighbors %}
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="{% url 'artist'  neigh.slug %}">
+                    <img class="img-responsive portfolio-item" src={{neigh.img}} alt="">
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+{% endblock %}

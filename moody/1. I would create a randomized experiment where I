@@ -1,0 +1,4 @@
+1. I would create a randomized experiment where I took samples from the population and then randomly assigned the groups to different treatment groups.  I would expose some people to the new advertising campaign and some to the old and see what the sales were with all things being equal.  Given that it met the conditions of my alpha and bravo levels, I would conclude that there was or was not causation.
+
+
+2.  P value is related to your null hypothesis.  It is the probability of obtaining an effect at least as extreme as the one in your sample data, assuming the truth of the null hypothesis.  The lower the p value, the less likely your results are with a true null hypothesis.  Likewise, power is the liklihood that a test rejects the null hypothesis when the alternative hypothesis is true.  The higher your power the more likely you are to correctly choose the alternative hypothesis.  It is used to determine sample size, and is related to a type II error.

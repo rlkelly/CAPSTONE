@@ -1,0 +1,417 @@
+{%  load staticfiles %}
+
+{%  load moody_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Moody - {% block title %}Music Discovery!{% endblock %}</title>
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans">
+ 
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">   
+  <title>Moody</title>
+    <link href="{{ STATIC_URL }}css/jquery.tagit.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- The real deal -->
+    <script src="{{ STATIC_URL }}js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+      <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() { 
+    $("img.source-image").hide();
+    var $source = $("img.source-image").attr("src");
+    $('#page-body').css({
+      'backgroundImage': 'url(' + $source +')',
+      'backgroundRepeat': 'no-repeat',
+      'backgroundPosition': 'top center'
+    });
+  }); 
+  </script>
+
+    <script>
+          $(function(){
+            var sampleTags =  [{% for i in bag_of_words %}"{{ i }}"{% if forloop.last %}{%else%},{%endif%}{% endfor %}];
+
+            //-------------------------------
+            // Preloading data in markup
+            //-------------------------------
+            $('#myULTags').tagit({
+                availableTags: sampleTags, // this param is of course optional. it's for autocomplete.
+                itemName: 'item',
+                fieldName: 'tags',
+                autocomplete: {delay: 0, minLength: 2, maxLength:3}
+            });
+
+            //-------------------------------
+            // Tag events
+            //-------------------------------
+            var eventTags = $('#eventTags');
+
+            var addEvent = function(text) {
+                $('#events_container').append(text + '<br>');
+            };
+
+            eventTags.tagit({
+                availableTags: sampleTags,
+                beforeTagAdded: function(evt, ui) {
+                    if (!ui.duringInitialization) {
+                        addEvent('beforeTagAdded: ' + eventTags.tagit('tagLabel', ui.tag));
+                    }
+                },
+                afterTagAdded: function(evt, ui) {
+                    if (!ui.duringInitialization) {
+                        addEvent('afterTagAdded: ' + eventTags.tagit('tagLabel', ui.tag));
+                    }
+                },
+                beforeTagRemoved: function(evt, ui) {
+                    addEvent('beforeTagRemoved: ' + eventTags.tagit('tagLabel', ui.tag));
+                },
+                afterTagRemoved: function(evt, ui) {
+                    addEvent('afterTagRemoved: ' + eventTags.tagit('tagLabel', ui.tag));
+                },
+                onTagClicked: function(evt, ui) {
+                    addEvent('onTagClicked: ' + eventTags.tagit('tagLabel', ui.tag));
+                },
+                onTagExists: function(evt, ui) {
+                    addEvent('onTagExists: ' + eventTags.tagit('tagLabel', ui.existingTag));
+                }
+            });
+
+            //-------------------------------
+            // Read-only
+            //-------------------------------
+            $('#readOnlyTags').tagit({
+                readOnly: true
+            });
+
+            //-------------------------------
+            // Tag-it methods
+            //-------------------------------
+            $('#methodTags').tagit({
+                availableTags: sampleTags
+            });
+
+            //-------------------------------
+            // Allow spaces without quotes.
+            //-------------------------------
+            $('#allowSpacesTags').tagit({
+                availableTags: sampleTags,
+                allowSpaces: true
+            });
+
+            //-------------------------------
+            // Remove confirmation
+            //-------------------------------
+            $('#removeConfirmationTags').tagit({
+                availableTags: sampleTags,
+                removeConfirmation: true
+            });
+            
+        });
+    </script>
+
+  <style type="text/css">
+
+#content {
+  margin-top: 5%;
+}
+h3{
+    color:Grey;
+    text-align:center;
+}
+
+  a {
+    color: white;
+    font-family: "Verdana";
+    font-size: 150%;
+    font-weight: bold;
+    font-weight: 700;
+    }
+
+    body {
+          z-index: 100;
+        font: 10px/13px 'Lucida Sans',sans-serif;
+        background-color: black;
+        box-sizing: border-box;
+        box-shadow: inset -50px 0px 500px 10px #FFF;
+        overflow: hidden;
+}
+
+#wrapper{
+    overflow:hidden;
+    height:100%;
+}
+
+    #bg {
+      margin-top: 4.5%;
+    background-size:cover;
+      position: absolute;
+      top: 0; 
+      left: 0; 
+    opacity: 0.5;
+      /* Preserve aspet ratio */
+    width: auto;
+    min-width: 63%;
+    max-width: 63%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    overflow:hidden;
+    }
+
+    #thumb {
+      min-width: 40%;
+      max-width: 40%;
+      width: auto;
+      margin: 1.5%
+    }
+
+.container {
+    width: 150px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.top {
+    margin-top: 10%;
+    position:left;
+    text-align:left;
+    font-size: 300%;
+    font-weight: bold;
+    font-weight: 700;
+}
+
+#text {
+  z-index: 100;
+  position: relative;
+  font-weight: bold;
+}
+
+
+.right {
+    float:right;
+    width: 37%;
+    margin-left: 5%;
+    text-align:center;
+    background-color: black;
+}
+.center {
+    text-align:center;
+}
+
+.terms {
+    color:grey;
+}
+
+#footer {
+    float:right;
+   position:absolute;
+    text-align: center;
+   bottom:0;
+   margin: auto;
+   height:60px;   /* Height of the footer */
+   min-width:10%;
+
+}
+
+.container-4{
+    color: black;
+  overflow: hidden;
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.container-4 input#search{
+  width: 300px;
+  height: 50px;
+  background: #2b303b;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #fff;
+  padding-left: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.container-4 input#search::-webkit-input-placeholder {
+   color: #65737e;
+}
+ 
+.container-4 input#search:-moz-placeholder { /* Firefox 18- */
+   color: #65737e;  
+}
+ 
+.container-4 input#search::-moz-placeholder {  /* Firefox 19+ */
+   color: #65737e;  
+}
+ 
+.container-4 input#search:-ms-input-placeholder {  
+   color: #65737e;  
+}
+
+.container-4 button.icon{
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+ 
+  border: none;
+  background: #232833;
+  height: 50px;
+  width: 50px;
+  color: #4f5b66;
+  opacity: 0;
+  font-size: 10pt;
+ 
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+.container-4:hover button.icon, .container-4:active button.icon, .container-4:focus button.icon{
+    outline: none;
+    opacity: 1;
+    margin-left: -50px;
+  }
+ 
+  .container-4:hover button.icon:hover{
+    background: white;
+  }
+
+}
+
+</style>
+
+    <link rel="stylesheet" type="text/css" href="custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+<div class="wrapper">
+<img src="{{image}}" id="bg">
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'index' %}">Moody</a>
+
+
+    <div class="container-4">
+        <form class="navbar-form" id="search_form" method="post">
+            <ul id="allowSpacesTags" ></ul>
+                {% csrf_token %}
+        </form>
+    </div>
+  </div>
+
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'index' %}">Home</a></li>
+
+                <li><a href="{% url 'about' %}">About</a></li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="right">
+
+
+    <div id='text'>
+    <div>
+    <h3>DESCRIPTIVE TERMS</h3>
+
+    {% for word in words %}
+    <a href="/moody/word/{{word}}" class='terms'>
+    <button type="submit" name="op" value="/moody/word/{{word}}" > {{ word }}</button></a>
+
+    {% endfor %}
+    </div>
+
+    <div>
+       <h3> Genres: </h3>
+    {% for genre, slug in genre_tags %}
+        <li>
+            <a href="/moody/genre/{{slug}}">{{ genre }}</a>
+        </li>
+    {% endfor %}
+    </div>
+<!-- Portfolio Item Row -->
+
+            <div class="span">
+                <br/>
+
+                <iframe src="https://embed.spotify.com/?uri={{spotify}}" width="300" height="100" frameborder="0" allowtransparency="true"></iframe>
+                  <div class="box">
+                    <center>
+    <div style="margin-bottom: 0px;">
+
+    <div>
+     <h3> Related Artists: </h3>
+
+    {% for slug,image in neighbors %}
+        <a href="/moody/album/{{slug}}">
+            <img src={{image}} id='thumb'>
+        </a>
+    {% endfor %}
+
+    </div>
+
+
+  </div>
+</div
+        <div>
+            <p align="right">Copyright &copy; RKELLY 2015</p>
+            <!-- /.row -->
+        </div>
+            </div>
+
+        <!-- Footer -->
+
+    </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>

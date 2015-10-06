@@ -1,0 +1,64 @@
+needledrop list
+inthemix - "http://www.inthemix.com.au/"
+consequence of sound - "http://consequenceofsound.net/"
+coke machine glow - "http://cokemachineglow.com/"
+syffal - "http://www.syffal.com/"
+under the radar - 'http://www.undertheradarmag.com
+pitchfork - "http://pitchfork.com/"
+the owl mag - "http://www.theowlmag.com/"
+no rip cord - 'http://www.noripcord.com'
+sputnik - 'http://www.sputnikmusic.com'
+hhdx - "http://hiphopdx.com/"
+beatsperminute - 'http://beatsperminute.com'
+exclaim - 'http://exclaim.ca/music/article/little_simz-age_101_drop_4_ep'
+djbooth - 'djbooth.net'
+nme - 'http://www.nme.com/'
+itsallindie - 'http://www.itsallindie.com'
+slant magazine - 'http://www.slantmagazine.com'
+clash music - 'http://www.clashmusic.com/''
+av-club - 'http://www.avclub.com/'
+absolutepunk - 'http://www.absolutepunk.net/'
+tinymixtapes - 'tinymixtapes.com'
+diymag - 'http://diymag.com/reviews/album'
+
+
+NEXT
+=============
+http://drownedinsound.com/releases/
+http://www.thelineofbestfit.com/
+http://www.popmatters.com/reviews/recent/section/music/
+http://www.altpress.com/reviews/
+http://www.americansongwriter.com/category/american-songwriter-2-0-nav/reviews/
+http://www.uncut.co.uk/reviews-home
+
+
+
+MOJO
+kerrang?
+PASTE MAGAZINE
+http://www.theguardian.com/music+tone/albumreview
+SPIN?
+THE INDEPENDENT
+
+
+poorly organized...
+========================
+
+http://www.factmag.com/category/reviews/
+
+http://recordcollectormag.com/reviews/twelve-tribe-israel
+http://www.gramophone.co.uk/reviews?field_media_classfication_tid=All&page=1
+punk news? ehh...
+https://mishkanyc.com/music
+Q Magazine
+
+
+TUES - SCRAPE ALL PAGES, ASSEMBLE DATABASE
+WED - NLP, LATENT FEATURES, ETC.
+THURS - INTERFACE, FLASK???
+FRI - INTERFACE???
+SAT, SUN - POLISH, SCOUT FOR RECOMMENDATIONS
+MON - FINALIZE
+
+
+
